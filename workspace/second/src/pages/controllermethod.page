@@ -1,0 +1,34 @@
+<apex:page controller="controllermethod"  >
+ <apex:form >
+  <apex:pageBlock mode="edit"><br/><br/>
+        <div class="row">
+       <apex:outputLabel styleClass="label" value="Project Name " /> 
+       <apex:inputField styleClass="field" value="{!newproj.Name}"/>
+       </div>
+       <div class="row">
+       <apex:outputLabel styleClass="label" value="StartDate "/> 
+       <apex:inputField styleClass="field" value="{!newproj.StartDate__c}"/>
+        </div>
+        <div class="row">
+       <apex:outputLabel styleClass="label" value="Customer " /> 
+       <apex:inputField styleClass="field" value="{!newproj.Customer__c}"/>
+       </div>
+       <apex:repeat value="{!moduleList}" var="module">
+      <div class="row">
+       <apex:outputLabel styleClass="label" value="Module " id="test"/> 
+       <apex:inputField styleClass="field" value="{!module.Name}"/>
+       </div> 
+       <div class="row">
+       <apex:outputLabel styleClass="label" value="Vendor " id="test1"/> 
+       <apex:inputField styleClass="field" value="{!module.Vendor__c}"/>
+       </div> 
+      </apex:repeat> 
+
+      <apex:commandButton value="Save" action="{!savecreatenew}" />
+      <apex:commandButton value="Cancel" action="{!closePopup}" />
+
+       <apex:commandButton value="Add" action="{!Add}"/>
+
+        </apex:pageBlock>   
+        </apex:form>
+</apex:page>

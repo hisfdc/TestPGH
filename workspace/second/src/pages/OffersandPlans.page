@@ -1,0 +1,244 @@
+<apex:page controller="Offers" sidebar="false">
+ 
+
+ <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+                <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png"/>
+                <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png"/>
+                <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png"/>
+                <script type="text/javascript" src="http://bootply.com/bootply.js"></script>
+                <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>   
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></link>
+                <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+                
+                <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>   
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></link>
+                <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+        <style>
+            .container-fluid {
+            margin-top: 10px;
+            
+            
+                 body { font-size: 62.5%; }
+    label, input { display:block; }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    h1 { font-size: 1.2em; margin: .6em 0; }
+    div#users-contain { width: 350px; margin: 20px 0; }
+    div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+    div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em; }
+            
+            }
+        </style>
+    
+
+    <apex:form style=" background-color: #006699;">
+    
+        <apex:pageBlock >
+            <style type="text/css">
+                .showAgreements {
+                background: transparent url('/img/alohaSkin/twisty_sprite.png') 0 0 no-repeat;
+                }
+                .hideAgreements {
+                background: transparent url('/img/alohaSkin/twisty_sprite.png') 0 -11px no-repeat;
+                }
+                
+            </style>
+            <apex:pageBlockSection > 
+             <apex:outputText value="Offers"  style="color: #004466;text-align:center;font-size:15pt;font-weight:bold;font-face: Helvetica, sans-serif; font-size:16pt"/ >
+             </apex:pageBlockSection>
+            
+            <apex:outputPanel layout="none"
+                              rendered="{!mainnodes.size!=0}">
+                <table id="tableAccount" class="list" border="4" cellpadding="0" cellspacing="0">
+                    
+                    <tbody>
+                        <apex:repeat id="repeatAccount"
+                                     value="{!mainnodes}"
+                                     var="item">
+                            
+                            <tr id="{!$Component.repeatAccount}:account" class="dataRow">
+                                
+                                
+                                <td> <apex:outputField value="{!item.gparent.Name}" /></td>
+                                <td> <apex:outputField value="{!item.gparent.id}" /></td>
+                                <td class="dataCell">
+                                    <apex:outputLink id="linkShowHide" value="javascript:toggleAgreementRow('{!$Component.repeatAccount}')">
+                                        <input type = "button" value = "Showall/HideAll"  class="showAgreements" style="background-color:lightblue"/>
+                                        <img id="{!$Component.repeatAccount}:Img" src="/s.gif" class="showAgreements" border="0" height="11px" width="11px" style="padding-right: 4px;"/>
+                                        
+                                    </apex:outputLink>
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            <tr id="{!$Component.repeatAccount}:Agreement" class="dataRow" style="display:none;">
+                                <td colspan="100" style="padding:10px; padding-left: 45px;">
+                                    <h3>Agreements</h3>
+                                    <br/>                                       
+                                    <apex:outputPanel layout="none">     
+                                          
+                                          <!------Start----->
+                                          
+                                           <div class="panel panel-info">
+                                            <div class="panel-heading"><div>
+                                                Related Contacts
+                                                <button type="button" class="btn btn-info"  style="float: right;">
+                                                    <span class="glyphicon glyphicon-plus-sign" /> New
+                                                </button>
+                                                </div>
+                                                <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                <h4 class="modal-title" id="myModalLabel">New Contact</h4>
+                                                            </div>
+                                                             <div class="modal-body">
+                                                               <div class="form-group">
+                                                                    <label>First Name</label><br />
+                                                                    <input type="text" placeholder="First Name" />
+                                                                     <!----   <apex:inputField value="{!singleCon.FirstName}" html-placeholder="First Name" styleClass="form-control"/> --->
+                                                                   </div>
+                                                            </div>
+                                                           
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                                                
+                                                                <apex:commandButton styleclass="btn btn-primary" value="Save"  reRender="contactTable" onComplete="$('#myModal').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                 </div>
+                                            </div>
+                                           </div>  
+                                           
+                                           
+                                         <!------END---->                             
+                                        <table id="tableAccountAgreements" class="list" border="0" cellpadding="0" cellspacing="0">
+                                            <thead>
+                                                <tr class="headerRow">
+                                                    <th ></th>
+                                                     <th ></th>
+                                                    <th>ID</th>
+                                                    <th>Name</th>                                                   
+                                                    
+                                                    <th>Agreement Name</th>
+                                                    <th>Contract Code</th>
+                                                    <th>Account Name</th>
+                                                    <th>Contract Type</th>
+                                                    <th>Regional Coverage</th>
+                                                    <th>Region</th>
+                                                    <th>Lead Country</th>
+                                                    <th>Status</th>
+                                                    <th>Effective Date</th>
+                                                    <th>Expiration Date</th>                                           
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <apex:repeat id="repeatAccountAgreements"
+                                                             value="{!item.parent}"
+                                                             var="subitem">
+                                                    
+                                                    <tr class="dataRow">
+                                                        
+                                                        <td class="dataCell"><apex:outputField value="{!subitem.id}"/></td>
+                                                        <td class="dataCell"><apex:outputField value="{!subitem.name}"/></td>                                                                                              
+                                                        
+                                                    </tr>
+                                                </apex:repeat>
+                                            </tbody>
+                                        </table> 
+                                    </apex:outputPanel>
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+            </apex:outputPanel>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+            <script>
+                debugger;
+            jQuery.noConflict();
+            function toggleAgreementRow(rowId) {
+                try {
+                    var AccountImg = jQuery(document.getElementById(rowId + ":Img"));
+                    var AgreementsRow = jQuery(document.getElementById(rowId + ":Agreement"));
+                    if (AccountImg.hasClass("hideAgreements")) {
+                        AccountImg.attr("class", "showAgreements");
+                        AgreementsRow.hide();
+                    }
+                    else {
+                        AccountImg.attr("class", "hideAgreements");
+                        AgreementsRow.show();
+                    }
+                }
+                catch (e) { alert(e); }
+            } 
+            function toggleAgreementRow1(rowId) {
+                try {
+                    
+                    var DocumentImg = jQuery(document.getElementById(rowId + ":Img"));
+                    var DocumentRow = jQuery(document.getElementById(rowId + ":Documents"));
+                    if (DocumentImg.hasClass("hideDocuments")) {
+                        DocumentImg.attr("class", "showDocuments");
+                        DocumentRow.hide();
+                    }
+                    else {
+                        DocumentImg.attr("class", "hideDocuments");
+                        DocumentRow.show();
+                    }
+                }
+                catch (e) { alert(e); }
+            }
+            function toggleAgreementRow2(rowId) {
+                try {
+                    
+                    var ClausesImg = jQuery(document.getElementById(rowId + ":Img"));
+                    var ClausesRow = jQuery(document.getElementById(rowId + ":clauses"));
+                    
+                    if (ClausesImg.hasClass("hideClauses")) {
+                        ClausesImg.attr("class", "showClauses");
+                        ClausesRow.hide();
+                    }
+                    else {
+                        ClausesImg.attr("class", "hideClauses");
+                        ClausesRow.show();
+                    }
+                }
+                catch (e) { alert(e); }
+            } 
+            
+            
+            
+            function toggleSelectAll(elCheckbox, rowId) {
+                try {
+                    var SelectAll = jQuery(elCheckbox);
+                    var AgreementsRow = jQuery(document.getElementById(rowId + ":Agreement"));
+                    AgreementsRow.find(".AgreementCheckbox").each(function() {
+                        jQuery(this).prop("checked", SelectAll.is(":checked"));
+                    });
+                }
+                catch (e) { alert(e); }
+            }
+            function fetchDocRec(){
+                
+                fetchClauseRecords();
+                
+            }
+            </script>
+        </apex:pageBlock>
+     
+    </apex:form>
+</apex:page>

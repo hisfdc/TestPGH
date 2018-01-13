@@ -1,0 +1,25 @@
+<apex:page controller="DynamicCasesExtension">
+
+<apex:form >
+    <apex:pageMessages />
+
+    <apex:pageBlock title="Filter Based on Case Status: ">
+        <apex:outputText value="Filter Based on Case Status"></apex:outputText>
+        <apex:actionRegion >
+            <apex:selectList value="{!c.status}" multiselect="false" size="1" required="true">
+                <apex:selectOption itemValue="None" itemLabel="-None-"/>
+                <apex:selectOption itemValue="New" itemLabel="New" />
+                <apex:selectOption itemValue="Closed" itemLabel="Closed"/>
+                <apex:selectOption itemValue="In Progress" itemLabel="In Progress"/>
+                <apex:actionSupport event="onchange" rerender="result"/>
+            </apex:selectList>
+        </apex:actionRegion>
+    </apex:pageBlock>
+
+    <apex:pageBlock >
+        <apex:outputPanel >
+            
+        </apex:outputPanel>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

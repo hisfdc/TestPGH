@@ -1,0 +1,23 @@
+<apex:page controller="CustomSettingsListController">  
+  <apex:sectionHeader title="Custom Settings" subtitle="List Demo"/>
+
+  <apex:form >
+  
+     <apex:pageBlock >
+     <apex:pageBlockTable value="{!isocodes}" var="a">
+     </apex:pageBlockTable> 
+ 
+     <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+    
+
+          <apex:selectList value="{!selectedIso}" size="1">
+              <apex:selectOptions value="{!isoCodes}"/>
+          </apex:selectList><apex:selectList value="{!selectedlOC}" size="1">
+              <apex:selectOptions value="{!LocationLst}"/>
+          </apex:selectList>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

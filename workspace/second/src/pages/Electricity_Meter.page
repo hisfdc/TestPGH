@@ -1,0 +1,25 @@
+<apex:page standardController="electricity_meter__c" recordSetVar="recrec" extensions="WrapperDemoClass">
+  <apex:form >
+    <apex:pageblock >
+      <apex:pageblockTable value="{!wrapperObj}" var="Rec">
+         <apex:column value="{!Rec.meterName}"/>     
+         <apex:column headerValue="Day Charge per kwh"  >
+           <apex:inputtext value="{!Rec.dayrate}"/>
+         </apex:column>
+         <apex:column headerValue="Standing Charge per year"  >
+           <apex:inputtext value="{!Rec.Standing}"/>
+         </apex:column>
+         
+         <apex:column headerValue="Supplier" >
+       <apex:selectList value="{!Rec.Supplier}" multiselect="false" size="1">
+         <apex:selectOptions value="{!suppliers}"/>
+       </apex:selectList>
+     </apex:column>                  
+      </apex:pageblockTable> 
+        <apex:pageBlockButtons >        
+            <apex:commandButton value="Save" action="{!save}" />
+            <apex:commandButton value="Cancel" action="{!cancel}"/>            
+        </apex:pageBlockButtons>
+    </apex:pageblock>
+  </apex:form>    
+</apex:page>

@@ -1,0 +1,18 @@
+<apex:page controller="myClass" >
+  <script>
+function setVar(param){
+    jQuery('[id$=myHiddenField]').val(param);
+    passStringToController();
+}
+</script>
+<apex:form >
+<!-- Hidden field to store a new value of the variable -->
+<apex:inputHidden value="{!myString}" id="myHiddenField"/>
+
+<!-- Action function for the rerendering -->
+<apex:actionFunction name="passStringToController" action="{!myMethod}" rerender="myHiddenField"/>
+
+<!-- A command button for sending a call to the function -->
+<apex:commandButton value="Test me" onclick="setVar('new value'); return false;" />
+</apex:form>
+</apex:page>

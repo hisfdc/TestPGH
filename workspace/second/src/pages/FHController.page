@@ -1,0 +1,39 @@
+<apex:page controller="FHController" >
+<apex:form >
+<apex:pageBlock >
+<apex:pageBlockSection id="search">
+<apex:outputPanel id="thePanelWrapper2">
+    <apex:outputPanel id="panel2" rendered="{!!rend1}" layout="block">
+    
+           </apex:outputPanel>
+
+<apex:outputPanel id="thePanelWrapper1">
+    <apex:outputPanel id="panel1" rendered="{!rend1}" layout="block">
+    <apex:repeat value="{!fhList}" var="rec">
+    <br>
+        <apex:outputField value="{!rec.name}" /><br></br>
+
+                <apex:commandbutton action="{!commandLinkAction1}" value="show"  reRender="thePanelWrapper1" /> 
+        <apex:commandbutton action="{!commandLinkAction}" value="hide"  reRender="thePanelWrapper2" />
+        
+
+        </br>
+    </apex:repeat>
+      
+        
+    </apex:outputPanel>
+
+        
+    </apex:outputPanel>
+
+</apex:outputPanel>
+
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+
+<apex:form >
+    
+</apex:form>
+</apex:page>

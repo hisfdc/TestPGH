@@ -1,0 +1,13 @@
+<apex:page controller="OffersPlans">
+  <apex:form >
+        <apex:pageBlock title="Offers">
+            <apex:pageBlockTable value="{!offerlist}" var="a">
+               <apex:column value="{!a.name}"/>
+               <apex:column >
+               <apex:outputLabel >{!count}Enablement{!multiple}</apex:outputLabel>>
+               </apex:column>
+        </apex:pageBlockTable> 
+    </apex:pageBlock>
+    
+</apex:form>
+</apex:page>
